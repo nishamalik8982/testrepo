@@ -58,7 +58,7 @@ html
                             div(style="padding:10px;")
                                 div#wallets
                                 button#addNewWallet.add-new.popup(onclick='openForm(\'newWalletForm\')') Create new
-                                div.form-wrapper#form-wrapper.hideMe
+                                div.form-wrapper#form-wrapper
                                     form#newWalletForm.form-container(method='POST', action='/bitcoin/newAddress')
                                         label Wallet Name:
                                             input.input-box(type='text', placeholder='Enter name', name='name', required=true)
