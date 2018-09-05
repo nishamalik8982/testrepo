@@ -1,0 +1,60 @@
+doctype html
+html
+    head
+        title= "Blockloan Wallet"
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=500,initial-scale=1')
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+
+
+    header
+    body
+        .container.Site-content
+            .row
+                .col-sm-3.col-xs-3.col-md-3.col-lg-3.col-3
+                    div(style="border: 1px solid blue; border-radius: 6px; height:100%; background-color: #34b2ae;")
+                        a(href="http://localhost:3000")
+                            img.company-logo(src="./images/logo.svg")
+                        div(style="padding:10px;")
+                            a(href="http://localhost:3000/wallet")
+                                button.wallet-button Wallet
+                        div(style="padding:10px;")
+                            button.wallet-button Exchange
+                        div(style="padding:10px;")
+                            button.wallet-button Backup
+
+                .col-sm-9.col-xs-9.col-md-9.col-lg-9.col-9
+                    div(style="border: 1px solid blue; border-radius: 6px; height:100%; background-color: #34b2ae; ")
+                        .wallets
+                            .button-wrapper
+                                div(style="padding:10px;")
+                                    a(href="http://localhost:3000/wallet/bitcoin")
+                                        button.wallet-button Bitcoin
+                                div(style="padding:10px;")
+                                    a(href="http://localhost:3000/wallet")
+                                        button.wallet-button Bitcoin Cash
+                                div(style="padding:10px;")
+                                    a(href="http://localhost:3000/wallet")
+                                        button.wallet-button Litecoin
+                                div(style="padding:10px;")
+                                    a(href="http://localhost:3000/wallet")
+                                        button.wallet-button Ethereum
+                                div(style="padding:10px;")
+                                    a(href="http://localhost:3000/wallet")
+                                        button.wallet-button Ripple
+                                div(style="padding:10px;")
+                                    a(href="http://localhost:3000/wallet")
+                                        button.wallet-button Dash
+                                div(style="padding:10px;")
+                                    a(href="http://localhost:3000/wallet")
+                                        button.wallet-button EOS
+                        .transactions
+                            h3(style="font-weight: bold;") Select the crypto
+                            div(style="padding: 10px;")
+                                hr
+                                h4 Only bitcoin is operative for now
+

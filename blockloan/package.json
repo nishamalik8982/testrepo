@@ -1,0 +1,29 @@
+{
+  "name": "blockloan",
+  "version": "0.0.1",
+  "description": "multicurrency/multisignature secure wallet",
+  "main": "index.js",
+  "scripts": {
+    "test": "blockloan -test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicolazaru/blockloanWallet.git"
+  },
+  "keywords": [
+    "multicurrency",
+    "multisignature",
+    "secure",
+    "wallet"
+  ],
+  "author": "Nicola Zaru",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nicolazaru/blockloanWallet/issues"
+  },
+  "homepage": "https://github.com/nicolazaru/blockloanWallet#readme",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "nedb": "^1.8.0"
+  }
+}

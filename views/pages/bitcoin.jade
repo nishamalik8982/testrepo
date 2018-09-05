@@ -1,0 +1,134 @@
+doctype html
+html
+    head
+        title= "Bitcoin Wallet"
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=500,initial-scale=1')
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+
+
+    header
+    body
+        .container.Site-content
+            .row
+                .col-sm-3.col-xs-3.col-md-3.col-lg-3.col-3
+                    div(style="border: 1px solid blue; border-radius: 6px; height:100%; background-color: #34b2ae;")
+                        a(href="http://localhost:3000")
+                            img.company-logo(src="../images/logo.svg")
+                        div(style="padding:10px;")
+                            a(href="http://localhost:3000/wallet")
+                                button.wallet-button Wallet
+                        div(style="padding:10px;")
+                            button.wallet-button Exchange
+                        div(style="padding:10px;")
+                            button.wallet-button Backup
+
+                .col-sm-9.col-xs-9.col-md-9.col-lg-9.col-9
+                    div(style="border: 1px solid blue; border-radius: 6px; height:100%; background-color: #34b2ae;")
+                        .wallets
+                            .button-wrapper
+                                div(style="padding:10px;")
+                                    a(href="http://localhost:3000/wallet/bitcoin")
+                                        button.wallet-button Bitcoin
+                                div(style="padding:10px;")
+                                    a(href="http://localhost:3000/wallet")
+                                        button.wallet-button Bitcoin Cash
+                                div(style="padding:10px;")
+                                    a(href="http://localhost:3000/wallet")
+                                        button.wallet-button Litecoin
+                                div(style="padding:10px;")
+                                    a(href="http://localhost:3000/wallet")
+                                        button.wallet-button Ethereum
+                                div(style="padding:10px;")
+                                    a(href="http://localhost:3000/wallet")
+                                        button.wallet-button Ripple
+                                div(style="padding:10px;")
+                                    a(href="http://localhost:3000/wallet")
+                                        button.wallet-button Dash
+                                div(style="padding:10px;")
+                                    a(href="http://localhost:3000/wallet")
+                                        button.wallet-button EOS
+                        .transactions
+                            h1(style="font-weight: bold;  ") Bitcoin Wallets
+                            .current-amount 0.000 BTC / 0.00 $
+                            div(style="padding:10px;")
+                                div#wallets
+                                button#addNewWallet.add-new.popup(onclick='openForm(\'newWalletForm\')') Create new
+                                div.form-wrapper#form-wrapper.hideMe
+                                    form#newWalletForm.form-container(method='POST', action='/bitcoin/newAddress')
+                                        label Wallet Name:
+                                            input.input-box(type='text', placeholder='Enter name', name='name', required=true)
+                                        label Password:
+                                            input.input-box(type='password', placeholder='Enter password', name='pswd', required=true)
+                                        label Confirm Password:
+                                            input.input-box(type='password', placeholder='Repeat Password', name='conf_psw', required=true)
+                                        div(style="padding: 10px 5px; display: inline-block")
+                                            button.wallet-button(type='submit' style="right: 10px; width:100px;") Create
+                                        div(style="padding: 10px 5px; display: inline-block")
+                                            button.cancel-btn.cancel(type='button' onclick='closeForm(\'transactionFormWrapper\', \'transactionForm\')', style="left: 10px; width:100px; background-color: red!important") Close
+                                div.form-wrapper#transactionFormWrapper.hideMe
+                                    form#transactionForm.form-container(method='POST', action='/bitcoin/createTransaction')
+                                        label Amount (BTC):
+                                            input.input-box(type='number', placeholder='Enter amount', name='amount', required=true)
+                                        label Address:
+                                            input.input-box(type='text', placeholder='Enter Address', name='address', required=true)
+                                        label Password:
+                                            input.input-box(type='password', placeholder='Enter Password', name='psw', required=true)
+                                        div(style="padding: 10px 5px; display: inline-block")
+                                            button.wallet-button(type='submit' style="right: 10px; width:120px;") Send payment
+                                        div(style="padding: 10px 5px; display: inline-block")
+                                            button.cancel-btn.cancel(type='button' onclick='closeForm(\'form-wrapper\', \'newWalletForm\')', style="left: 10px; width:100px; background-color: red!important") Close
+                            hr
+                            //div(style="width:100%; border: 1px solid #82bdba; border-radius: 6px; padding: 5px;")
+
+                            script.
+                                function openForm(id) {
+                                    let formWrap = document.getElementById(id);
+                                    console.log(formWrap);
+                                    //formWrap.setAttribute('class', 'showMe');
+                                    //formWrap.removeAttribute('class','hideMe')
+                                    formWrap.classList.remove("hideMe");
+                                    //formWrap.classList.toggle("showMe");
+                                }
+                                function closeForm(wrapperId, formId) {
+                                    var formWrap = document.getElementById(wrapperId);
+                                    document.getElementById(formId).reset();
+                                    //formWrap.setAttribute('class', 'hideMe');
+                                    formWrap.classList.toggle("hideMe");
+                                    //formWrap.classList.remove("showMe");
+
+                                }
+
+                                function createTransaction() {
+                                    $.post("/bitcoin/createTransaction", function (data) {
+                                        console.log(data)
+                                    });
+                                }
+                                $(function () {
+                                    $.post("/bitcoin/getAddressList", function (data) {
+                                        let totalAmountCrypto = 0;
+                                        let totalAmountFiat = 0;
+                                        for (let i in data) {
+                                            if (data[i].name && data[i].name.length) {
+                                                let wall = '<table style ="display: inline-block;"><tbody><tr><th>Name</th><th>Address</th><th>Network</th><th>Coins</th></tr><tr><td>' + data[i].name + '</td><td>' + data[i].address + '</td><td>' + data[i].network + '</td><td>' + data[i].coins + '</td></tr></tbody></table>'
+                                                let options = '<div style="display: inline-block; vertical-align: top; padding: 14px 5px;"><button onclick="openForm(\'transactionForm\')" class="spend-button">P</button></div>'
+                                                totalAmountCrypto += data[i].coins;
+                                                totalAmountFiat += data[i].fiat;
+                                                $("#wallets").append(wall + options);
+                                                console.log(data);
+                                                if ($("#addNewWallet")) {
+                                                    $("#addNewWallet").remove();
+                                                }
+                                            }
+                                        }
+                                        $(".current-amount").text(totalAmountCrypto + ' BTC / ' + totalAmountFiat + ' $');
+
+                                    });
+                                });
+
+
+
