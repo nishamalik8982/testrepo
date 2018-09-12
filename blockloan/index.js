@@ -2,6 +2,8 @@ let bip39 = require('bip39');
 let bitcoin = require('bitcoinjs-lib');
 
 let crypto = require('crypto');
+const hasher = require('./hasher/hasher.util.js');
+
 let EventEmitter = require('events');
 
 let Constants = require('./constants/constants');
@@ -70,6 +72,35 @@ class Wallet extends EventEmitter {
         return this.__network;
     }
 
+    static getTransaction(address) {
+        return bnet.api.getTransactions(address).then(function (resp) {
+            let transactions = [];
+            for (let i in resp) {
+                let currentTrans = resp[i];
+                if (currentTrans.result < 0) {
+                    transactions[i] = {
+                        type: "Out",
+                        amount: currentTrans.result*(-1)/Constants.Bitcoin.Satoshis,
+                        date: "date",
+                        time: "time"
+                    }
+                } else {
+                    transactions[i] = {
+                        type: "In",
+                        amount: currentTrans.result/Constants.Bitcoin.Satoshis,
+                        date: "date",
+                        time: "time"
+                    }
+                }
+            }
+            return transactions;
+        });
+    }
+    /* This hashes the password*/
+    static hashIt(password) {
+        return hasher.hash(password);
+    }
+
     /**
      * This is irreversible as there is not way to decrypt the wallet for good.
      * The only way to read the key is with the readDecrypted function
@@ -78,10 +109,16 @@ class Wallet extends EventEmitter {
      * @code const wallet = Wallet.create(name, mnemonic).encrypt(password);
      */
     encrypt(password) {
-        if (this.__password) throw new Error('Cannot re-encrypt an encrypted key');
+        //if (this.__password) throw new Error('Cannot re-encrypt an encrypted key');
         this.__password = password;
         const cipher = crypto.createCipher(Wallet.Defaults.Encryption, password);
         this.__wif = cipher.update(this.__wif, 'utf8', 'hex') + cipher.final('hex');
+        return this;
+    }
+
+    encrypt2(hash) {
+        this.__password = hash;
+        this.__wif = hasher.encrypt(this.__wif, hash);
         return this;
     }
 
@@ -92,10 +129,9 @@ class Wallet extends EventEmitter {
      * @returns {string} It will not return the wallet itself like the encrypt
      */
     readDecrypted(password) {
-        if (!this.__password) throw new Error('Cannot de-encrypt an key that was not encrypted');
+        if (!this.__password) throw new Error('Cannot de-encrypt a key that was not encrypted');
         if (!password || !this.matches(password)) throw new Error('Passwords do not match');
-        const cipher = crypto.createDecipher(Wallet.Defaults.Encryption, password);
-        return cipher.update(this.__wif, 'hex', 'utf8') + cipher.final('utf8');
+        return hasher.decrypt(this.__wif, password)
     }
 
     matches(password) {
@@ -209,8 +245,8 @@ class Wallet extends EventEmitter {
         return obj;
     }
 
-    static testClass() {
-        return "test successfull";
+    static satoshisConstant() {
+        return 100000000;
     }
 
 }

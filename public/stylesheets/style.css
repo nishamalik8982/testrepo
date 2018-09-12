@@ -139,15 +139,15 @@ body {
     background:linear-gradient(to bottom, #2e466e 5%, #415989 100%);
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2e466e', endColorstr='#415989',GradientType=0);
     background-color:#2e466e;
-    -moz-border-radius:17px;
-    -webkit-border-radius:17px;
-    border-radius:17px;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
     border:1px solid #1f2f47;
     display:inline-block;
     cursor:pointer;
     color:#ffffff;
     font-family:Arial;
-    font-size:10px;
+    font-size:15px;
     padding:6px 13px;
     text-decoration:none;
     text-shadow:0px 1px 0px #263666;
@@ -166,6 +166,48 @@ body {
     position:relative;
     top:1px;
 }
+
+.delete-address {
+    -moz-box-shadow:inset 0px 0px 15px 3px #23395e;
+    -webkit-box-shadow:inset 0px 0px 15px 3px #23395e;
+    box-shadow:inset 0px 0px 15px 3px #23395e;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e01631), color-stop(1, #ff0000));
+    background:-moz-linear-gradient(top, #e01631 5%, #ff0000 100%);
+    background:-webkit-linear-gradient(top, #e01631 5%, #ff0000 100%);
+    background:-o-linear-gradient(top, #e01631 5%, #ff0000 100%);
+    background:-ms-linear-gradient(top, #e01631 5%, #ff0000 100%);
+    background:linear-gradient(to bottom, #e01631 5%, #ff0000 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e01631', endColorstr='#ff0000',GradientType=0);
+    background-color:#e01631;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+    border:1px solid #1f2f47;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    margin-left: 20px;
+    font-family:Arial;
+    font-size:15px;
+    padding:6px 13px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #263666;
+}
+.delete-address:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ff0000), color-stop(1, #e01631));
+    background:-moz-linear-gradient(top, #ff0000 5%, #e01631 100%);
+    background:-webkit-linear-gradient(top, #ff0000 5%, #e01631 100%);
+    background:-o-linear-gradient(top, #ff0000 5%, #e01631 100%);
+    background:-ms-linear-gradient(top, #ff0000 5%, #e01631 100%);
+    background:linear-gradient(to bottom, #ff0000 5%, #e01631 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0000', endColorstr='#e01631',GradientType=0);
+    background-color:#ff0000;
+}
+.delete-address:active {
+    position:relative;
+    top:1px;
+}
+
 
 .add-new {
     background-color:#21ccc6;
@@ -215,6 +257,14 @@ body {
     font-weight: bold;
 
 }
+
+.transactions-box {
+    border-radius: 6px;
+    background-color: #30aba7;
+    padding: 20px;
+    height: auto;
+    overflow-y: auto;
+}
 .current-amount {
     font-family: "Georgia", sans-serif;
     font-size: 25px;
@@ -225,7 +275,10 @@ body {
     width: 100%;
     padding: 20px;
 }
-
+.pay-btn {
+    display: inline-block;
+    width: auto;
+}
 /*============  New wallet form popup  ================*/
 form {
     font-family: "Georgia", sans-serif;
@@ -291,7 +344,7 @@ form .input-box {
 
 /* Toggle this class - hide and show the popup */
 .showMe {
-    display: block!important;
+    display: block !important;
     -webkit-animation: fadeIn 0.1s;
     animation: fadeIn 0.1s;
 }
@@ -315,9 +368,11 @@ form .input-box {
 
 /*============  Tables  ================*/
 table {
+    display: table;
+    overflow-x: auto!important;
     font-family: 'Georgia', sans-serif;
     border-collapse: collapse;
-    width: auto;
+    width: 100%;
 }
 td, th {
     font-family: 'Georgia', sans-serif;
