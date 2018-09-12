@@ -75,8 +75,8 @@
       <file leaf-file-name="bitcoin.jade" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/pages/bitcoin.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="131" column="77" selection-start-line="131" selection-start-column="77" selection-end-line="131" selection-end-column="77" />
+            <state relative-caret-position="304">
+              <caret line="132" column="77" selection-start-line="132" selection-start-column="77" selection-end-line="132" selection-end-column="77" />
             </state>
           </provider>
         </entry>
@@ -346,12 +346,12 @@
       <workItem from="1536158878035" duration="20440000" />
       <workItem from="1536252247447" duration="9499000" />
       <workItem from="1536336423837" duration="5681000" />
-      <workItem from="1536681958059" duration="16141000" />
+      <workItem from="1536681958059" duration="16671000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115574000" />
+    <option name="totallyTimeSpent" value="116104000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -840,8 +840,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/pages/bitcoin.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="131" column="77" selection-start-line="131" selection-start-column="77" selection-end-line="131" selection-end-column="77" />
+        <state relative-caret-position="304">
+          <caret line="132" column="77" selection-start-line="132" selection-start-column="77" selection-end-line="132" selection-end-column="77" />
         </state>
       </provider>
     </entry>
